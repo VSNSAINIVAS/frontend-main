@@ -2,17 +2,20 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import { Button, TextField } from "@mui/material";
 import "react-datepicker/dist/react-datepicker.css";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
 
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [nameRegister, setNameRegister] = useState("");
   const [emailRegister, setEmailRegister] = useState("");
-  const [tempAddress, setTempAddress] = useState("");
-  const [permAddress, setPermAddress] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [passwordRegister, setPasswordRegister] = useState("");
   const [passwordConfirmRegister, setPasswordConfirmRegister] = useState("");
+  const [registerBy, setRegisteredBy] = useState("general user");
 
   const navigate = useNavigate();
 
@@ -40,7 +43,8 @@ const Register = () => {
             <h1
               style={{
                 color: "#3B5998",
-                marginLeft: "80px",
+                marginLeft: "100px",
+                fontSize: "20px",
               }}
             >
               Sign Up
@@ -109,64 +113,38 @@ const Register = () => {
             </div>
           </div>
 
-          <div style={{ marginTop: "30px" }}>
+          <div style={{ marginTop: "10px" }}>
             <p
               style={{
-                fontSize: "16px",
-                display: "block",
-                marginTop: "-5px",
-                marginBottom: "15px",
-                marginLeft: "56px",
-                fontWeight: "bold",
-                zIndex: -1,
+                fontFamily: "'Libre Baskerville', serif",
+                marginBottom: "6px",
+                fontWeight: "bolder",
+                marginRight: "20px",
+                marginTop: "8.5px",
               }}
             >
-              Temporaray Address
+              Role{" "}
             </p>
-
-            <TextField
-              id="outline-basic"
-              size="small"
-              // label="Enter your Temporary Address"
-              multiline
-              InputProps={{
-                maxRows: 2,
-              }}
-              style={{
-                width: "300px",
-              }}
-              value={tempAddress}
-              onChange={(e) => setTempAddress(e.target.value)}
-            />
-          </div>
-          <div style={{ marginTop: "30px" }}>
-            <p
-              style={{
-                fontSize: "16px",
-                display: "block",
-                marginTop: "-5px",
-                marginBottom: "15px",
-                marginLeft: "56px",
-                fontWeight: "bold",
-                zIndex: -1,
-              }}
-            >
-              Permanent Address
-            </p>
-            <TextField
-              id="outline-basic"
-              size="small"
-              // label="Enter your Permanent Address"
-              multiline
-              InputProps={{
-                maxRows: 2,
-              }}
-              style={{
-                width: "300px",
-              }}
-              value={permAddress}
-              onChange={(e) => setPermAddress(e.target.value)}
-            />
+            <FormControl>
+              <RadioGroup
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="row-radio-buttons-group"
+                defaultValue={registerBy}
+                onChange={(e) => setRegisteredBy(e.target.value)}
+              >
+                <FormControlLabel
+                  value="general user"
+                  control={<Radio />}
+                  label="Genearl User"
+                />
+                <FormControlLabel
+                  value="recruiter"
+                  control={<Radio />}
+                  label="Recruiter"
+                />
+              </RadioGroup>
+            </FormControl>
           </div>
 
           <div style={{ marginTop: "30px" }}>
@@ -176,7 +154,7 @@ const Register = () => {
                 display: "block",
                 marginTop: "-5px",
                 marginBottom: "15px",
-                marginLeft: "85px",
+                marginLeft: "100px",
                 fontWeight: "bold",
               }}
             >
@@ -202,7 +180,7 @@ const Register = () => {
                 display: "block",
                 marginTop: "-5px",
                 marginBottom: "15px",
-                marginLeft: "56px",
+                marginLeft: "75px",
                 fontWeight: "bold",
               }}
             >

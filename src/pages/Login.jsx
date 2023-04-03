@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { Button, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
 
 import jwt_decode from "jwt-decode";
 import useAuth from "../hooks/useAuth";
@@ -14,6 +18,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");
+  const [loginBy, setLoginBy] = useState("general user");
 
   const navigate = useNavigate();
   const { auth, setAuth } = useAuth();
@@ -53,10 +58,6 @@ export default function Login() {
       }
     }
   };
-
-  console.log(email, password);
-  console.log("Error: ", errMsg);
-  console.log("Auth:", auth);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -121,7 +122,15 @@ export default function Login() {
             }}
           >
             <div>
-              <h1 style={{ color: "#3B5998", marginLeft: "120px" }}>Log In</h1>
+              <h1
+                style={{
+                  color: "#3B5998",
+                  marginLeft: "120px",
+                  fontSize: "20px",
+                }}
+              >
+                Log In
+              </h1>
             </div>
 
             <div style={{ marginTop: "20px" }}>
@@ -167,6 +176,40 @@ export default function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
+            </div>
+
+            <div style={{ marginTop: "10px" }}>
+              <p
+                style={{
+                  fontFamily: "'Libre Baskerville', serif",
+                  marginBottom: "6px",
+                  fontWeight: "bolder",
+                  marginRight: "20px",
+                  marginTop: "8.5px",
+                }}
+              >
+                Role{" "}
+              </p>
+              <FormControl>
+                <RadioGroup
+                  row
+                  aria-labelledby="demo-row-radio-buttons-group-label"
+                  name="row-radio-buttons-group"
+                  defaultValue={loginBy}
+                  onChange={(e) => setLoginBy(e.target.value)}
+                >
+                  <FormControlLabel
+                    value="general user"
+                    control={<Radio />}
+                    label="Genearl User"
+                  />
+                  <FormControlLabel
+                    value="recruiter"
+                    control={<Radio />}
+                    label="Recruiter"
+                  />
+                </RadioGroup>
+              </FormControl>
             </div>
 
             <div>

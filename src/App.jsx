@@ -23,12 +23,12 @@ function App() {
         <Route path="unauthorized" element={<Unauthorized />} />
 
         {/* we want to protect these routes */}
-        <Route
+        {/* <Route
           element={<RequireAuth allowedRoles={["GeneralUser", "Recruiter"]} />}
-        >
-          <Route path="blogs" element={<Blogs />} />
-          <Route path="qna" element={<Qna />} />
-        </Route>
+        > */}
+        <Route path="blogs" element={<Blogs />} />
+        <Route path="qna" element={<Qna />} />
+        {/* </Route> */}
 
         <Route element={<RequireAuth allowedRoles={["GeneralUser"]} />}>
           <Route path="jobs">
